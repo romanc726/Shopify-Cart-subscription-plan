@@ -1,0 +1,23 @@
+Here's the 2nd task, let me know if you have any questions, we also sent an invite for another test store, make sure to work on a duplicate theme and label it with your name.
+
+
+
+Task#2
+Task Overview:
+We aim to implement a feature that allows customers to upgrade a product line item from a one-time purchase to a subscription plan and from subscription to one-time. This functionality needs to be user-friendly and available on both the slide cart and the cart page of our Shopify store.
+Enable customers to seamlessly switch from a one-time purchase to a subscription plan and from subscription to one-time for products directly in the slide cart and on the cart page.
+Ensure the user interface clearly indicates the option to upgrade to a subscription and is easy to use.
+If a product has different selling plans, display a Subscribe & Save option for that cart item So that the user can switch to a subscription purchase.
+After the product is upgraded to a subscription plan display a dropdown/selection box with different selling plan options including the one-time(Example SS attached SS#1).
+Upon selection of any of the options the cart should update the line item with the selected selling plan (Example SS attached SS#2).
+If a user selects one-time options the line item should downgrade to one-time purchase and should show the Subscribe & Save option.
+Implement dynamic updates so that the cart reflects changes in real-time without requiring page reloads.
+Technical Requirements:
+Ensure seamless integration with the existing Shopify theme and cart functionality.
+Use JavaScript to dynamically update the cart.
+Maintain responsive design for mobile and desktop users.
+Ensure cross-browser compatibility.
+
+
+
+Note from our devs: for the above task ask him to install the Seal Subscriptions app for creating selling plans for the products
