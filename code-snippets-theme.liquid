@@ -1,0 +1,164 @@
+<div class="line-item-options">
+    <select class="selling-plan-dropdown" data-line-item-id="{{ line_item.key }}">
+        <option value="one_time">One-Time Purchase</option>
+        {% for selling_plan in line_item.selling_plans %}
+            <option value="{{ selling_plan.id }}">{{ selling_plan.name }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="subscription-options">
+  <label for="payment-options">Choose Payment Option:</label>
+  <select id="payment-options" class="payment-select">
+    <optgroup label="Pay Full Price">
+      <option value="pay-once">Pay Once</option>
+    </optgroup>
+    <optgroup label="Subscribe & Keep 25%">
+      <option value="14-days">Pay Every 14 Days</option>
+      <option value="30-days">Pay Every 30 Days</option>
+      <option value="45-days">Pay Every 45 Days</option>
+      <option value="60-days">Pay Every 60 Days</option>
+    </optgroup>
+  </select>
+</div>
+
+
+<div class="subscription-options">
+  {{ line_item.product.subscription_details | default: 'One-Time Purchase' }}
+  <select 
+    class="selling-plan-selector"
+    data-line-item-id="{{ line_item.key }}">
+    <option value="0">One-Time Purchase</option>
+    {% for plan in line_item.product.selling_plans %}
+    <option value="{{ plan.id }}">
+      {{ plan.name }} - {{ plan.price | money }}
+    </option>
+    {% endfor %}
+  </select>
+</div>
+
+
+<!-- {%- for plan in item.product.selling_plan_groups.plans -%} -->
+                      <script>
+                        // var testVal = {{plan.id}};
+                        // console.log("Items: ", {{testVal}});
+                      </script>
+                        <!-- {%- endfor -%} -->
+
+
+
+<table class="cart-table">
+  {% for item in cart.items %}
+    <tr>
+      <td>{{ item.product.title }}</td>
+      <td>
+        {% if item.product.selling_plan_groups.size > 0 %}
+          <select class="selling-plan-dropdown" data-line-item-id="{{ item.key }}">
+            <option value="none" {% if item.selling_plan_allocation == blank %}selected{% endif %}>
+              One-Time Payment
+            </option>
+            {% for group in item.product.selling_plan_groups %}
+              {% for plan in group.selling_plans %}
+                <option value="{{ plan.id }}" {% if item.selling_plan_allocation.selling_plan.id == plan.id %}selected{% endif %}>
+                  {{ plan.name }} ({{ plan.price | money }})
+                </option>
+              {% endfor %}
+            {% endfor %}
+          </select>
+        {% else %}
+          One-Time Payment Only
+        {% endif %}
+      </td>
+      <td>{{ item.line_price | money }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+
+{% if item.product.selling_plan_groups.size > 0 %}
+                            
+                            <select class="selling-plan-dropdown" data-line-item-id="{{ item.key }}">
+                              <optgroup label="Pay Full Price">
+                                <option
+                                  class="selling-plan-option"
+                                  value="none"
+                                  {% if item.selling_plan_allocation == blank %}
+                                    selected
+                                  {% endif %}
+                                >
+                                  One-Time Only
+                                </option>
+                              </optgroup>
+                              <optgroup label="Subscribe & Keep 25%">
+                                {% for group in item.product.selling_plan_groups %}
+                                  {% for plan in group.selling_plans %}
+                                    <option
+                                      class="selling-plan-option"
+                                      value="{{ plan.id }}"
+                                      {% if item.selling_plan_allocation.selling_plan.id == plan.id %}
+                                        selected
+                                      {% endif %}
+                                    >
+                                      {{ plan.name }}
+                                    </option>
+                                  {% endfor %}
+                                {% endfor %}
+                              </optgroup>
+                            </select>
+                          {% else %}
+                            One-Time Payment Only
+                          {% endif %}
+
+
+
+                          {% if item.product.selling_plan_groups.size > 0 %}
+  <div class="selling-plan-wrapper">
+    <!-- Button to toggle the selector -->
+    <button
+      class="toggle-selling-plan"
+      data-line-item-id="{{ item.key }}"
+    >
+      {% if item.selling_plan_allocation == blank %}
+        One-Time Only
+      {% else %}
+        Subscribe & Keep 25%
+      {% endif %}
+    </button>
+    
+    <!-- Selling Plan Selector -->
+    <select
+      class="selling-plan-dropdown hidden"
+      data-line-item-id="{{ item.key }}"
+    >
+      <optgroup label="Pay Full Price">
+        <option
+          class="selling-plan-option"
+          value="none"
+          {% if item.selling_plan_allocation == blank %}
+            selected
+          {% endif %}
+        >
+          One-Time Only
+        </option>
+      </optgroup>
+      <optgroup label="Subscribe & Keep 25%">
+        {% for group in item.product.selling_plan_groups %}
+          {% for plan in group.selling_plans %}
+            <option
+              class="selling-plan-option"
+              value="{{ plan.id }}"
+              {% if item.selling_plan_allocation.selling_plan.id == plan.id %}
+                selected
+              {% endif %}
+            >
+              {{ plan.name }}
+            </option>
+          {% endfor %}
+        {% endfor %}
+      </optgroup>
+    </select>
+  </div>
+{% else %}
+  One-Time Payment Only
+{% endif %}
+

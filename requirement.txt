@@ -4,7 +4,8 @@ Here's the 2nd task, let me know if you have any questions, we also sent an invi
 
 Task#2
 Task Overview:
-We aim to implement a feature that allows customers to upgrade a product line item from a one-time purchase to a subscription plan and from subscription to one-time. This functionality needs to be user-friendly and available on both the slide cart and the cart page of our Shopify store.
+We aim to implement a feature that allows customers to upgrade a product line item from a one-time purchase to a subscription plan and from subscription to one-time. 
+This functionality needs to be user-friendly and available on both the slide cart and the cart page of our Shopify store.
 Enable customers to seamlessly switch from a one-time purchase to a subscription plan and from subscription to one-time for products directly in the slide cart and on the cart page.
 Ensure the user interface clearly indicates the option to upgrade to a subscription and is easy to use.
 If a product has different selling plans, display a Subscribe & Save option for that cart item So that the user can switch to a subscription purchase.
